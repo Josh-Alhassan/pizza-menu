@@ -1,4 +1,5 @@
-import pizzaImage from "./pizzas/spinaci.jpg";
+import spinaciImage from "./pizzas/spinaci.jpg";
+import funghiPizza from "./pizzas/funghi.jpg";
 import "./index.css";
 
 const pizzaData = [
@@ -56,16 +57,6 @@ function App() {
   );
 }
 
-function Pizza() {
-  return (
-    <div>
-      <img src={pizzaImage} alt="Pizza Spinaci" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-  );
-}
-
 function Header() {
   // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
   const style = {};
@@ -76,13 +67,36 @@ function Header() {
   );
 }
 
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+      </div>
+    </div>
+  );
+}
+
 function Menu() {
   return (
     <div className="menu">
       <h1>Our Menu</h1>
-      <Pizza />;
-      <Pizza />;
-      <Pizza />;
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName={spinaciImage}
+        price={10}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mozarella, mushrooms, and onion"
+        photoName={funghiPizza}
+        price={10}
+      />
+      ;
     </div>
   );
 }
