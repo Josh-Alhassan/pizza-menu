@@ -1,3 +1,5 @@
+import React from "react";
+
 import spinaciImage from "./pizzas/spinaci.jpg";
 import funghiPizza from "./pizzas/funghi.jpg";
 import focacciaPizza from "./pizzas/focaccia.jpg";
@@ -79,11 +81,17 @@ function Menu() {
     <div className="menu">
       <h2>Our Menu</h2>
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <React.Fragment>
+          <p>
+            Authentic Italian Cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious
+          </p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </React.Fragment>
       ) : (
         <p>We're still working on our menu. Please come back later</p>
       )}
@@ -107,13 +115,15 @@ function Menu() {
 function Pizza({ pizzaObj }) {
   // console.log();
 
-  if (pizzaObj.soldOut) return null;
+  // if (pizzaObj.soldOut) return null;
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
+
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
